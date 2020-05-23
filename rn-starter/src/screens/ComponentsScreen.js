@@ -10,7 +10,7 @@ const ComponentsScreen = () => {
       <Text style={styles.textStyle}>Getting started with React Native!</Text>
       <Text style={styles.subHeaderStyle}>My name is {name}</Text>
     </View>
-  ); 
+  );
 };
 
 const styles = StyleSheet.create({
