@@ -6,19 +6,20 @@ import { Text, StyleSheet, View, Button, TouchableOpacity } from "react-native";
 // TouchableOpacity -> Highly customizable component to detect press on any kind of element
 // For Events, we have onPress property
 
-const HomeScreen = () => {
+// Using Destructuring to select only navigation property from props
+
+const HomeScreen = ({ navigation }) => {
   return (
   <View>
     <Text style={styles.text}>HomeScreen</Text>
     <Button
-      onPress={() => console.log('Button pressed')}
+      onPress={() => navigation.navigate('Components')}
       title="Go to Components Demo"
     />
-    <TouchableOpacity onPress={() => console.log('List Pressed')}>
-      <Text>Go to List Demo</Text>
-      <Text>Go to List Demo</Text>
-      <Text>Go to List Demo</Text>
-    </TouchableOpacity>
+    <Button
+      onPress={() => navigation.navigate('List')}
+      title="Go to List Demo">
+    </Button>
   </View>
   );
 };
