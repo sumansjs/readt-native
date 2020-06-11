@@ -8,6 +8,10 @@ import { Text, StyleSheet, View, Button, TouchableOpacity } from "react-native";
 
 // Using Destructuring to select only navigation property from props
 
+// The props system is all about communicating data from a parent to a child
+// State is all about tracking the single piece of data and
+// any time it changes, we want to update what is on the screen of our device
+
 const HomeScreen = ({ navigation }) => {
   return (
   <View>
@@ -23,6 +27,10 @@ const HomeScreen = ({ navigation }) => {
     <Button
       onPress={() => navigation.navigate('Image')}
       title="Go to Image Demo">
+    </Button>
+    <Button
+      onPress={() => navigation.navigate('Counter')}
+      title="Go to Counter Demo">
     </Button>
   </View>
   );
