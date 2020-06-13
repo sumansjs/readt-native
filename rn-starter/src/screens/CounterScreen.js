@@ -1,34 +1,45 @@
-import React, { useState } from 'react';
-import {View, Text, StyleSheet, Button} from 'react-native';
+import React, { useReducer } from 'react';
+import { View, Text, StyleSheet, Button } from 'react-native';
 
-// useState is a hook
+// useReducer is a hook
 // A hook is a function which adds new functionality to function component
+
+const reducer = (state, action) => {
+  // state - { counter : 0}
+  // action - { type: 'increment' || 'decrement', payload: 1 }
+  switch (action.type) {
+    case 'increment':
+      return { ...state, counter: state.counter + action.payload };
+    case 'decrement':
+      return { ...state, counter: state.counter - action.payload };
+    default:
+      return state;
+  }
+};
 
 const CounterScreen = () => {
   // Array destructuring syntax here -
-  // useState(0) - setting the initial state of counter to - 0
-  const [counter, setCounter] = useState(0);
+  const [state, dispatch] = useReducer(reducer, { counter: 0 });
+  const { counter } = state;
 
   return (
     <View>
       <Button
         title="Increase"
         onPress={() => {
-          // setting the new state of counter
-          setCounter(counter + 1);
+          dispatch({ type: 'increment', payload: 1 });
         }}
       />
       <Button
         title="Decrease"
         onPress={() => {
-          // setting the new state of counter
-          setCounter(counter - 1);
+          dispatch({ type: 'decrement', payload: 1 });
         }}
-        />
-      <Text>Current Count: { counter }</Text>
+      />
+      <Text>Current Count: {counter}</Text>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({});
 
