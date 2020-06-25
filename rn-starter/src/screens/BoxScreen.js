@@ -11,6 +11,12 @@ const BoxScreen = () => {
   );
 };
 
+// 1.) Box Object Model
+// Height, Width, Margin, Border, Padding
+
+
+// 2.) Flex Box
+
 // (To be applied on parent element)
 // Flex Alignment - (How children are laid inside parent)
 // 1. alignItems - 'stretch' (Default) (Takes max horizontal space possible)
@@ -52,6 +58,20 @@ const BoxScreen = () => {
 // 5. alignItems - 'center' - Align child element to center (Takes space as the width of child element)
 // 6. alignItems - 'baseline' - Align child element to baseline of text (Same line as text)
 
+
+// 3.) Position - (How single element gets laid out inside parent element)
+
+// Use this to override Object Model + Flex box
+// 1. position - 'relative' (Default)
+// 2. position - 'absolute' - Ignored by siblings, though some flex box rules are set by parent
+
+// Under Position there are four different related properties (top, bottom, left, right)
+// It feels like margin but behave differently
+// 1. top - Extra space added at top after displaying everything
+// 2. bottom - Extra space added at bottom after displaying everything
+// 3. left - Extra space added at left after displaying everything
+// 4. right - Extra space added at right after displaying everything
+
 const styles = StyleSheet.create({
   viewStyle: {
     borderColor: 'black',
@@ -69,7 +89,10 @@ const styles = StyleSheet.create({
     borderColor: 'red',
     borderWidth: 1,
     flex:2,
-    alignSelf: 'center'
+    alignSelf: 'center',
+    position: 'absolute',
+    top:10,
+    right:10
   },
   textThreeStyle: {
     borderColor: 'red',
