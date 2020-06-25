@@ -76,6 +76,17 @@ const BoxScreen = () => {
 // We can use - position:'absolute', top:0, bottom:0, right:0, left:0
 // There is shortcut for this - ...StyleSheet.absoluteFillObject
 
+// Flowchart for using layouts
+// Apply Box Model Rules
+// Is Position Absolute ?
+// No -
+// Apply all flex box rules, considering children
+// Place element inside parent
+// Apply top, left, right, bottom
+// Yes -
+// Apply flex box rules, ignore all siblings
+// Apply top, left, right, bottom
+
 const styles = StyleSheet.create({
   viewStyle: {
     borderColor: 'black',
