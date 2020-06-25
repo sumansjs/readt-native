@@ -72,6 +72,10 @@ const BoxScreen = () => {
 // 3. left - Extra space added at left after displaying everything
 // 4. right - Extra space added at right after displaying everything
 
+// For absolute filling the child element to the entire size of parent element,
+// We can use - position:'absolute', top:0, bottom:0, right:0, left:0
+// There is shortcut for this - ...StyleSheet.absoluteFillObject
+
 const styles = StyleSheet.create({
   viewStyle: {
     borderColor: 'black',
@@ -90,9 +94,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     flex:2,
     alignSelf: 'center',
-    position: 'absolute',
-    top:10,
-    right:10
+    ...StyleSheet.absoluteFillObject
   },
   textThreeStyle: {
     borderColor: 'red',
