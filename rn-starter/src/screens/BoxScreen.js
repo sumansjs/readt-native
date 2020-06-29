@@ -3,10 +3,10 @@ import { Text, View, StyleSheet } from 'react-native';
 
 const BoxScreen = () => {
   return (
-    <View style={styles.viewStyle}>
-      <Text style={styles.textOneStyle}>Child #1</Text>
-      <Text style={styles.textTwoStyle}>Child #2</Text>
-      <Text style={styles.textThreeStyle}>Child #3</Text>
+    <View style={styles.parentStyle}>
+      <View style={styles.viewOneStyle}></View>
+      <View style={styles.viewTwoStyle}></View>
+      <View style={styles.viewThreeStyle}></View>
     </View>
   );
 };
@@ -51,12 +51,12 @@ const BoxScreen = () => {
 
 // alignSelf - (Will override the alignItems property of parent)
 // Default value is same as the alignItems value of parent element
-// 1. alignItems - 'auto' - Set the alignment same as that of parent element
-// 2. alignItems - 'stretch' - Takes max horizontal space possible
-// 3. alignItems - 'flex-start' - Align child element to left (Takes space as the width of child element)
-// 4. alignItems - 'flex-end' - Align child element to right (Takes space as the width of child element)
-// 5. alignItems - 'center' - Align child element to center (Takes space as the width of child element)
-// 6. alignItems - 'baseline' - Align child element to baseline of text (Same line as text)
+// 1. alignSelf - 'auto' - Set the alignment same as that of parent element
+// 2. alignSelf - 'stretch' - Takes max horizontal space possible
+// 3. alignSelf - 'flex-start' - Align child element to left (Takes space as the width of child element)
+// 4. alignSelf - 'flex-end' - Align child element to right (Takes space as the width of child element)
+// 5. alignSelf - 'center' - Align child element to center (Takes space as the width of child element)
+// 6. alignSelf - 'baseline' - Align child element to baseline of text (Same line as text)
 
 
 // 3.) Position - (How single element gets laid out inside parent element)
@@ -112,6 +112,32 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     flex:3
   },
+  parentStyle: {
+    borderColor: 'black',
+    borderWidth: 1,
+    alignItems: 'stretch',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    height: 200
+  },
+  viewOneStyle: {
+    height: 100,
+    width: 100,
+    backgroundColor: '#F2D7D5'
+  },
+  viewTwoStyle: {
+    height: 100,
+    width: 100,
+    backgroundColor: '#ABEBC6',
+    // marginTop: 100,
+    // top: 100,
+    alignSelf: 'flex-end'
+  },
+  viewThreeStyle: {
+    height: 100,
+    width: 100,
+    backgroundColor: '#D7BDE2'
+  }
 });
 
 export default BoxScreen;
