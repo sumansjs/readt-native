@@ -5,7 +5,6 @@ export default () => {
   const [errorMessage, setErrorMessage] = useState('');
 
   const searchApi = async (searchTerm) => {
-    console.log('Hi there');
     try {
       const response = await zomato.get('/search', {
         params: {
@@ -34,7 +33,7 @@ export default () => {
   // searchApi('pasta');
   // RIGHT WAY!
   useEffect(() => {
-    searchApi('pasta');
+    searchApi('biryani');
   }, []);
 
   return [results, errorMessage, searchApi];
