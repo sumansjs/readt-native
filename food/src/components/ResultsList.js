@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, Text, FlatList } from 'react-native';
+import ResultsDetail from './ResultsDetail';
 
 const ResultsList = ({ results, title }) => {
   return (
@@ -10,7 +11,7 @@ const ResultsList = ({ results, title }) => {
         data={results}
         keyExtractor={(result) => result.restaurant.id}
         renderItem={({ item }) => {
-          return <Text>{item.restaurant.name}</Text>;
+          return <ResultsDetail result={item.restaurant} />;
         }}
       />
     </View>
