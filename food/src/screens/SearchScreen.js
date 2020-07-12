@@ -1,33 +1,26 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import SearchBar from '../components/SearchBar';
-import zomato from '../api/zomato';
+import useResults from '../hooks/useResults';
+import ResultsList from '../components/ResultsList';
 
 const SearchScreen = () => {
   const [term, setTerm] = useState('');
-  const [results, setResults] = useState([]);
-  const [errorMessage, setErrorMessage] = useState('');
+  const [results, errorMessage, searchApi] = useResults();
 
-  const searchApi = async () => {
-    try {
-      const response = await zomato.get('/search', {
-        params: {
-          entity_id: 5,
-          entity_type: 'city',
-          q: term,
-        },
-      });
-      setResults(response.data.restaurants);
-    } catch (error) {
-      setErrorMessage('Something went wrong');
-    }
+  // Do grouping in search screen
+  const filterResultsByPriceRange = (price_range) => {
+    return results.filter((result) => result.restaurant.price_range === price_range);
   };
 
   return (
     <View>
-      <SearchBar term={term} onTermChange={setTerm} onTermSubmit={searchApi} />
+      <SearchBar term={term} onTermChange={setTerm} onTermSubmit={() => searchApi(term)} />
       {errorMessage ? <Text>{errorMessage}</Text> : null}
       <Text>We have found {results.length} results</Text>
+      <ResultsList results={filterResultsByPriceRange(2)} title="Cost Effective" />
+      <ResultsList results={filterResultsByPriceRange(3)} title="Bit Pricier" />
+      <ResultsList results={filterResultsByPriceRange(4)} title="Bit Spender" />
     </View>
   );
 };
