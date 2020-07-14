@@ -15,9 +15,10 @@ const SearchScreen = () => {
 
   // View can extend as long the size of content
   // But we have to restrict it to the size of display to make ScrollView work properly
-  // Use flex: 1 to restrict View to the size of the display
+  // Use style={{flex: 1}} to restrict View to the size of the display
+  // Another way is to use empty <> tag
   return (
-    <View style={{ flex: 1 }}>
+    <>
       <SearchBar term={term} onTermChange={setTerm} onTermSubmit={() => searchApi(term)} />
       {errorMessage ? <Text>{errorMessage}</Text> : null}
       <Text>We have found {results.length} results</Text>
@@ -26,7 +27,7 @@ const SearchScreen = () => {
         <ResultsList results={filterResultsByPriceRange(3)} title="Bit Pricier" />
         <ResultsList results={filterResultsByPriceRange(4)} title="Bit Spender" />
       </ScrollView>
-    </View>
+    </>
   );
 };
 
