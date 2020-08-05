@@ -1,8 +1,15 @@
 import React from 'react';
 import { View, StyleSheet, Text, FlatList, TouchableOpacity } from 'react-native';
 import ResultsDetail from './ResultsDetail';
+import { withNavigation } from 'react-navigation';
 
+// To receive navigation props directly, without passing as props from parent,
+// Wrap your component with withNavigation Helper
 const ResultsList = ({ results, title, navigation }) => {
+  if (!results.length) {
+    return null;
+  }
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>
@@ -13,7 +20,9 @@ const ResultsList = ({ results, title, navigation }) => {
         keyExtractor={(result) => result.restaurant.id}
         renderItem={({ item }) => {
           return (
-            <TouchableOpacity onPress={() => navigation.navigate('ResultsShow')}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('ResultsShow', { id: item.restaurant.id })}
+            >
               <ResultsDetail result={item.restaurant} />
             </TouchableOpacity>
           );
@@ -35,4 +44,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ResultsList;
+export default withNavigation(ResultsList);
