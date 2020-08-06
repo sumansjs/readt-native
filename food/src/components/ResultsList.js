@@ -1,16 +1,31 @@
 import React from 'react';
-import { View, StyleSheet, Text, FlatList } from 'react-native';
+import { View, StyleSheet, Text, FlatList, TouchableOpacity } from 'react-native';
+import ResultsDetail from './ResultsDetail';
+import { withNavigation } from 'react-navigation';
 
-const ResultsList = ({ results, title }) => {
+// To receive navigation props directly, without passing as props from parent,
+// Wrap your component with withNavigation Helper
+const ResultsList = ({ results, title, navigation }) => {
+  if (!results.length) {
+    return null;
+  }
+
   return (
-    <View>
+    <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>
       <FlatList
         horizontal
+        showsHorizontalScrollIndicator={false}
         data={results}
         keyExtractor={(result) => result.restaurant.id}
         renderItem={({ item }) => {
-          return <Text>{item.restaurant.name}</Text>;
+          return (
+            <TouchableOpacity
+              onPress={() => navigation.navigate('ResultsShow', { id: item.restaurant.id })}
+            >
+              <ResultsDetail result={item.restaurant} />
+            </TouchableOpacity>
+          );
         }}
       />
     </View>
@@ -18,7 +33,15 @@ const ResultsList = ({ results, title }) => {
 };
 
 const styles = StyleSheet.create({
-  title: { fontSize: 18, fontWeight: 'bold' },
+  title: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginLeft: 15,
+    marginBottom: 5,
+  },
+  container: {
+    marginBottom: 10,
+  },
 });
 
-export default ResultsList;
+export default withNavigation(ResultsList);

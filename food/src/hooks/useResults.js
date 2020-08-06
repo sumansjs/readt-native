@@ -33,7 +33,7 @@ export default () => {
   // searchApi('pasta');
   // RIGHT WAY!
   useEffect(() => {
-    searchApi('biryani');
+    searchApi('pizza');
   }, []);
 
   return [results, errorMessage, searchApi];
