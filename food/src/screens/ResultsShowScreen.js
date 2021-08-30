@@ -7,8 +7,6 @@ const ResultsShowScreen = ({ navigation }) => {
   const [result, setResult] = useState(null);
   const id = navigation.getParam('id');
 
-  console.log(result);
-
   const getResults = async (id) => {
     const response = await zomato.get(`/restaurant?res_id=${id}`);
     setResult(response.data);
